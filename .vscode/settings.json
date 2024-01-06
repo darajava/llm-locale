@@ -1,0 +1,5 @@
+{
+  "github.copilot.inlineSuggest.enable": true,
+  "editor.suggestSelection": "first",
+  "editor.formatOnSave": true
+}

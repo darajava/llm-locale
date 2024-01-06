@@ -1,0 +1,20 @@
+{
+  "name": "llmlocale",
+  "version": "1.0.0",
+  "description": "Generate and update localisation based on a master file",
+  "scripts": {
+    "build": "tsc -w"
+  },
+  "bin": {
+    "llm-locale": "./bin/index.js"
+  },
+  "author": "Dara Javaherian",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "openai": "^4.24.1"
+  }
+}

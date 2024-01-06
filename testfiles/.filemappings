@@ -1,0 +1,19 @@
+{
+  "source": {
+    "file": "en.json", "language": "English"
+  },
+  "destinations": [
+    {
+      "file": "de.json", "language": "German"
+    },
+    {
+      "file": "fr.json", "language": "French"
+    },
+    {
+      "file": "es.json", "language": "Spanish"
+    },
+    {
+      "file": "ko.json", "language": "Korean"
+    }
+  ]
+}
