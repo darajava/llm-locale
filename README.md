@@ -2,7 +2,7 @@
 
 #### A command-line utility to automatically generate and edit localization files
 
-## Functionality
+# Functionality
 
 Localization files stored in a folder alongside a `.translationrc` file can be automatically generated and edited with this script. Within `.translationrc`, a mandatory source file is set, along with a list of target languages.
 
@@ -62,25 +62,25 @@ Keys starting with `@` are ignored, i.e. `"@hello": "world"` would be ignored.
 
 Keys with non-string values are also ignored.
 
-## Use cases
+# Use cases
 
-#### Adding new languages
+### Adding new languages
 
 Add a key to `destinations` in `.translationsrc` with a filename and a language, and `llm-locale` will automatially create and populate the file. I suggest only adding 1/2 languages at a time to verify the syntax of templated values.
 
-#### Adding a value
+### Adding a value
 
 Add a key/value pair(s) to the source file. Running the script will translate and add to all destination files.
 
-#### Removing a value
+### Removing a value
 
 Remove a key/value pair(s) from the source file. Running the script will remove that key from all destination files.
 
-#### Editing a value in the source file
+### Editing a value in the source file
 
 This one is a bit hacky - remove the key and run `llm-locale` to remove it in all destination files, and then re-add it to the source file with the new value and run the script again.
 
-## Installation
+# Installation
 
 `npm -g llm-local`
 
@@ -96,7 +96,7 @@ Run this in the directory where your source translation file and `.translationrc
 
 `npm -g update llm-locale`
 
-## Gotchas
+# Gotchas
 
 Some translation files allow templating by wrapping identifiers in braces.
 
@@ -111,7 +111,11 @@ Any identifier within {} is a variable and should not be translated.
 When testing on Flutter's (fairly weird) pluralizing syntax, I did get it to help, but it still needed some manual tweaking due to the complexity of the expression. Adding this prompt made it better:
 
 ```
-When translating plurals please use the following syntax: {count, plural, =0{TRANSLATION} =1{TRANSLATION} other{TRANSLATION}}. TRANSLATION can include a variable name in braces, which should not be translated, but also do not translate the token 'plural', or the initial to another language. Make sure the braces balance correctly.
+When translating plurals please use the following syntax:
+{count, plural, =0{TRANSLATION} =1{TRANSLATION} other{TRANSLATION}}.
+
+TRANSLATION can include a variable name in braces, which should not be translated,
+but also do not translate the token 'plural', or the initial to another language.
 ```
 
 Example of Flutter's plural syntax:

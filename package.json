@@ -1,6 +1,6 @@
 {
   "name": "llm-locale",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "Generate and update localizations based on a master translation file",
   "scripts": {
     "build": "tsc",
