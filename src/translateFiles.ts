@@ -2,9 +2,9 @@ import fs from "fs";
 import { translateFile } from "./translateFile";
 
 const showHelp = () => {
-  console.log(`ERROR: Could not read .filemappings file.
+  console.log(`ERROR: Could not read \`.translationrc\` file.
   
-.filemappings should exist alongside translation files and have the format:
+.translationrc should exist alongside translation files and have the format:
 
 {
   "source": {
@@ -17,7 +17,9 @@ const showHelp = () => {
       "language": "German"
     },
     // and so on
-  ]
+  ],
+  [optional] "extraPrompt": "More instructions for the LLM"
+  [optional] "model": "gpt-3.5-turbo-1106"
 }
   `);
 };
@@ -25,7 +27,7 @@ const showHelp = () => {
 export const translateFiles = async (openAiKey: string) => {
   let fileMappings: any = {};
   try {
-    fileMappings = JSON.parse(fs.readFileSync(".filemappings", "utf8"));
+    fileMappings = JSON.parse(fs.readFileSync(".translationrc", "utf8"));
   } catch {
     showHelp();
   }
@@ -40,8 +42,16 @@ export const translateFiles = async (openAiKey: string) => {
     const destFile = dest.file;
     const sourceLanguage = fileMappings.source.language;
     const destLanguage = dest.language;
+    const extraPrompt = fileMappings.extraPrompt;
+    const model = fileMappings.model || "gpt-3.5-turbo-1106";
 
-    if (!sourceFile || !destFile || !sourceLanguage || !destLanguage) {
+    if (
+      !sourceFile ||
+      !destFile ||
+      !sourceLanguage ||
+      !destLanguage ||
+      !model
+    ) {
       showHelp();
       process.exit(1);
     }
@@ -51,7 +61,7 @@ export const translateFiles = async (openAiKey: string) => {
     }
 
     console.log(
-      `Translating ${sourceFile} (${sourceLanguage}) to ${destFile} (${destLanguage})`
+      `\n\nTranslating ${sourceFile} (${sourceLanguage}) to ${destFile} (${destLanguage})`
     );
 
     await translateFile(
@@ -59,7 +69,9 @@ export const translateFiles = async (openAiKey: string) => {
       destFile,
       sourceLanguage,
       destLanguage,
-      openAiKey
+      openAiKey,
+      model,
+      extraPrompt
     );
   }
 };

@@ -1,12 +1,13 @@
 {
-  "name": "llmlocale",
-  "version": "1.0.0",
-  "description": "Generate and update localisation based on a master file",
+  "name": "llm-locale",
+  "version": "1.0.16",
+  "description": "Generate and update localizations based on a master translation file",
   "scripts": {
-    "build": "tsc -w"
+    "build": "tsc",
+    "dev": "tsc -w"
   },
   "bin": {
-    "llm-locale": "./bin/index.js"
+    "llm-locale": "bin/index.js"
   },
   "author": "Dara Javaherian",
   "license": "ISC",
@@ -16,5 +17,18 @@
   },
   "dependencies": {
     "openai": "^4.24.1"
-  }
+  },
+  "main": "bin/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darajava/llm-locale.git"
+  },
+  "keywords": [
+    "localization",
+    "tooling"
+  ],
+  "bugs": {
+    "url": "https://github.com/darajava/llm-locale/issues"
+  },
+  "homepage": "https://github.com/darajava/llm-locale#readme"
 }
